@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                     selection,
                     selectionArgs,
                     null
-            )?.let { cursor ->
+            )?.use { cursor ->
                 while (cursor.moveToNext()) {
 
                     val fileName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME))
@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             PERMISSION_STORAGE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "permission granted", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show()
                 } else {
                     showPermissionMissing()
                 }
